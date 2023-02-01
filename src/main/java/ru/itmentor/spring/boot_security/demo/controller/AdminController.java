@@ -30,15 +30,15 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String saveUser(Model model) {
+    public String addUser(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("roles", roleService.allRole());
+        model.addAttribute("roles", roleService.getAllRoles());
         return "create";
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("user") User user, @RequestParam("authorities") List<String> values){
-        user.setRoles(roleService.getRole(values));
+    public String saveUser(@ModelAttribute("user") User user, @RequestParam("authorities") List<String> values){
+        user.setRoles(roleService.setRole(values));
         userService.save(user);
         return "redirect:/admin";
     }
@@ -46,15 +46,15 @@ public class AdminController {
     @GetMapping("/{id}/update")
     public String updateUser(@PathVariable("id") Long id, Model model){
         model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("roles", roleService.allRole());
+        model.addAttribute("roles", roleService.getAllRoles());
         return "update";
     }
 
     @RequestMapping("/editUser/{id}")
-    public String edit(@PathVariable("id") Long id,
+    public String editUser(@PathVariable("id") Long id,
                        @ModelAttribute("user") User user,
                        @RequestParam("authorities") List<String> values){
-        user.setRoles(roleService.getRole(values));
+        user.setRoles(roleService.setRole(values));
         userService.updateUser(id, user);
         return "redirect:/admin";
     }
@@ -68,8 +68,7 @@ public class AdminController {
     @GetMapping("/{id}/check")
     public String checkUser(@PathVariable("id") Long id, Model model){
         User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-//        model.addAttribute("roles", roleService.allRole());
+        model.addAttribute("user", userService.getUserById(id));
         return "checkUser";
     }
 }

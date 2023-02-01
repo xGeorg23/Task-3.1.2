@@ -1,4 +1,4 @@
-INSERT INTO roles(role) VALUES ('ROLE_ADMIN'),
+INSERT INTO roles(name) VALUES ('ROLE_ADMIN'),
                                ('ROLE_USER');
 
 INSERT INTO users(email, last_name, name, password) VALUES ('admin@email.com', 'Lastname1', 'name1', '$2a$10$7PbTPYcitT126BV6VfqSFuU890Z.5tlV6ZuGCyoVFjIv6IS5uguBG'),

@@ -22,7 +22,7 @@ public class RoleServiceImp implements RoleService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Role> allRole() {
+    public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
 
@@ -34,7 +34,7 @@ public class RoleServiceImp implements RoleService {
 
     @Transactional
     @Override
-    public Set<Role> getRole(List<String> rolesId) {
+    public Set<Role> setRole(List<String> rolesId) {
         Set<Role> roleSet = new HashSet<>();
         for (String id: rolesId) {
             roleSet.add(getRoleById(Long.parseLong(id)));
