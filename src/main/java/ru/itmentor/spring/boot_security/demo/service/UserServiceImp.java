@@ -32,7 +32,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<User> allUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
